@@ -10,6 +10,12 @@ export class ContactPage extends BasePage {
     readonly message: Locator;
     readonly submitButton: Locator;
 
+    //Error message locators
+    readonly forenameError: Locator;
+    readonly emailError: Locator;
+    readonly messageError: Locator;
+    readonly errorBanner: Locator;
+
     //  ASSIGN the locators to the properties in the constructor
     constructor(page: Page) {
         super(page);   // passes page up to BasePage so that the instance of BasePage (page) can be used
@@ -18,6 +24,10 @@ export class ContactPage extends BasePage {
         this.email = page.getByRole('textbox', { name: 'Email *' });
         this.message = page.getByRole('textbox', { name: 'Message *' });
         this.submitButton = page.getByRole('link', { name: 'Submit' });
+        this.forenameError = page.locator('#forename-err');
+        this.emailError = page.locator('#email-err');
+        this.messageError = page.locator('#message-err');
+        this.errorBanner = page.locator('.alert-error');
     }
 
     // Methods to interact with the contact page elements which will be called in the step definitions file (ContactPageSteps.ts)
