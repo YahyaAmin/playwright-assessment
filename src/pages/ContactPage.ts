@@ -1,4 +1,4 @@
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, Locator} from '@playwright/test';
 import { BasePage } from './BasePage';
 
 export class ContactPage extends BasePage {
@@ -16,6 +16,9 @@ export class ContactPage extends BasePage {
     readonly messageError: Locator;
     readonly errorBanner: Locator;
 
+    // Declare a property for the success message locator
+    readonly successMessage: Locator;
+
     //  ASSIGN the locators to the properties in the constructor
     constructor(page: Page) {
         super(page);   // passes page up to BasePage so that the instance of BasePage (page) can be used
@@ -28,6 +31,7 @@ export class ContactPage extends BasePage {
         this.emailError = page.locator('#email-err');
         this.messageError = page.locator('#message-err');
         this.errorBanner = page.locator('.alert-error');
+        this.successMessage = page.locator('.alert-success');
     }
 
     // Methods to interact with the contact page elements which will be called in the step definitions file (ContactPageSteps.ts)
