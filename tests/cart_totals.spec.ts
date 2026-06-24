@@ -32,13 +32,17 @@ test.describe('Cart totals', () => {
             const quantity = await cartPage.getQuantity(product.name);
             const subtotal = await cartPage.getSubtotal(product.name);
 
-            // subtotal must equal price * quantity (toBeCloseTo to avoid float precision issues)
-            expect(subtotal).toBeCloseTo(unitPrice * quantity, 2);
+            await test.step(`${product.name}: ${quantity} × $${unitPrice} = $${subtotal}`, async () => {
+                // subtotal must equal price * quantity (toBeCloseTo to avoid float precision issues)
+                expect(subtotal).toBeCloseTo(unitPrice * quantity, 2);
+            });
 
             total += subtotal;
         }
 
         // total must equal the sum of all subtotals
-        expect(await cartPage.getTotal()).toBeCloseTo(total, 2);
+        await test.step(`Total equals sum of subtotals ($${total.toFixed(2)})`, async () => {
+            expect(await cartPage.getTotal()).toBeCloseTo(total, 2);
+        });
     });
 });
