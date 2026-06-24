@@ -1,14 +1,14 @@
 // Generated from: features\contact.feature
-import { test } from "playwright-bdd";
+import { test } from "../../features/fixtures.ts";
 
 test.describe('Contact form validation', () => {
 
-  test('Validation errors show on empty submit and clear with valid data', { tag: ['@contact', '@tc1'] }, async ({ Given, When, Then, page }) => { 
-    await Given('I am on the Contact page', null, { page }); 
-    await When('I submit the form without entering any data', null, { page }); 
-    await Then('I should see validation errors for the mandatory fields', null, { page }); 
-    await When('I fill in the mandatory fields with valid data', null, { page }); 
-    await Then('the validation errors should no longer be displayed', null, { page }); 
+  test('Validation errors show on empty submit and clear with valid data', { tag: ['@contact', '@tc1'] }, async ({ Given, When, Then, contactPage }) => { 
+    await Given('I am on the Contact page', null, { contactPage }); 
+    await When('I submit the form without entering any data', null, { contactPage }); 
+    await Then('I should see validation errors for the mandatory fields', null, { contactPage }); 
+    await When('I fill in the mandatory fields with valid data', null, { contactPage }); 
+    await Then('the validation errors should no longer be displayed', null, { contactPage }); 
   });
 
 });
