@@ -19,6 +19,9 @@ export class ContactPage extends BasePage {
     // Declare a property for the success message locator
     readonly successMessage: Locator;
 
+    // Declare a locator for the "sending feedback message", found the value using failed runs error message
+    readonly sendingFeedback: Locator;
+
     //  ASSIGN the locators to the properties in the constructor
     constructor(page: Page) {
         super(page);   // passes page up to BasePage so that the instance of BasePage (page) can be used
@@ -32,6 +35,7 @@ export class ContactPage extends BasePage {
         this.messageError = page.locator('#message-err');
         this.errorBanner = page.locator('.alert-error');
         this.successMessage = page.locator('.alert-success');
+        this.sendingFeedback = page.getByRole('heading', { name: 'Sending Feedback' });
     }
 
     // Methods to interact with the contact page elements which will be called in the step definitions file (ContactPageSteps.ts)
