@@ -26,3 +26,14 @@ Then('the validation errors should no longer be displayed', async ({ contactPage
     await expect(contactPage.messageError).toBeHidden();
     await expect(contactPage.errorBanner).toBeHidden();
 });
+
+When('I submit the form', async ({ contactPage }) => {
+    // click submit
+    await contactPage.clickSubmit();
+});
+
+Then('I should see a successful submission message', async ({ contactPage }) => {
+    // wait for the variable "Sending Feedback" delay to finish, then assert success
+    await expect(contactPage.sendingFeedback).toBeHidden({ timeout: 20000 });
+    await expect(contactPage.successMessage).toContainText('we appreciate your feedback');
+});
